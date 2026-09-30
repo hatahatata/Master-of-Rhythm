@@ -1,0 +1,172 @@
+:root {
+  /* プロセカ風カラーパレット */
+  --sekai-bg-dark: #0d111d;
+  --sekai-cyan: #33ccbb;
+  --sekai-cyan-glow: rgba(51, 204, 187, 0.6);
+  --sekai-pink: #ff3377;
+  --sekai-yellow: #ffcc00;
+  --sekai-blue: #3399ff;
+  --sekai-purple: #bb44ff;
+  --sekai-green: #33dd77;
+  --sekai-red: #ff4455;
+
+  /* 難易度カラー (プロセカ準拠) */
+  --diff-easy: #33dd77;     /* EASY: 緑 */
+  --diff-normal: #3399ff;   /* NORMAL: 青 */
+  --diff-hard: #ffaa00;     /* HARD: 黄橙 */
+  --diff-expert: #ff3366;   /* EXPERT: 赤ピンク */
+  --diff-master: #aa33ff;   /* MASTER: 紫 */
+
+  /* レーンカラー (6レーン) */
+  --lane-0: #ff3377;
+  --lane-1: #33ccbb;
+  --lane-2: #ffcc00;
+  --lane-3: #ffcc00;
+  --lane-4: #33ccbb;
+  --lane-5: #ff3377;
+
+  --font-display: 'Orbitron', 'Outfit', sans-serif;
+  --font-main: 'Outfit', 'Noto Sans JP', -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--sekai-bg-dark);
+  color: #ffffff;
+  font-family: var(--font-main);
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 25%, #18223c 0%, #0a0d18 100%);
+  overflow: hidden;
+}
+
+/* プロセカ風幾何学・三角ポリゴン背景 */
+.sekai-bg-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sekai-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  opacity: 0.15;
+  animation: floatAnim 10s ease-in-out infinite alternate;
+}
+
+.triangle-1 {
+  top: -50px;
+  right: -50px;
+  border-width: 0 200px 300px 200px;
+  border-color: transparent transparent var(--sekai-cyan) transparent;
+}
+
+.triangle-2 {
+  bottom: -60px;
+  left: -80px;
+  border-width: 250px 180px 0 180px;
+  border-color: var(--sekai-pink) transparent transparent transparent;
+  animation-delay: -5s;
+}
+
+/* プロセカ風ライブボタン */
+.btn-sekai-live {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ff3377 0%, #ff66aa 50%, #ff88cc 100%);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 51, 119, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sekai-live:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 10px rgba(255, 51, 119, 0.4);
+}
+
+.btn-sekai-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: rgba(30, 42, 70, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease;
+}
+
+.btn-sekai-secondary:active {
+  transform: scale(0.96);
+  background: rgba(51, 204, 187, 0.25);
+  border-color: var(--sekai-cyan);
+}
+
+/* グラスパネル (プロセカ風) */
+.sekai-panel {
+  background: rgba(20, 28, 50, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* 難易度バッジ (プロセカ風) */
+.diff-EASY { background: var(--diff-easy); color: #000; font-weight: 900; }
+.diff-NORMAL { background: var(--diff-normal); color: #fff; font-weight: 900; }
+.diff-HARD { background: var(--diff-hard); color: #000; font-weight: 900; }
+.diff-EXPERT { background: var(--diff-expert); color: #fff; font-weight: 900; }
+.diff-MASTER { background: var(--diff-master); color: #fff; font-weight: 900; }
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
